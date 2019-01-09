@@ -12,6 +12,7 @@ Some prototype tests were created in the file `tests prototype.txt`.
 
 ### About the UI design
 The UI was designed following the guide image as strictly as possible, but some modification were made to add clarity.
+
 The events' colors are generated randomly by the function `getRandomColor()` inside `scripts.js`.
 
 I personally judge the interface to be quite antiquated, but making it look better didn't seem to be the point of the activity, so I focused on the algorithm. It broke my heart to do so, by the way.
