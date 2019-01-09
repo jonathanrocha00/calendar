@@ -1,5 +1,19 @@
 
 
+Event.durationInMinutes
+
+  // Empty event
+  event(00, 00, 00, 00)
+  Expected: 0
+
+  // Whole day event
+  event(00, 00, 24, 00)
+  Expected: 1440
+
+  // 30 minutes event
+  event(13, 00, 13, 30)
+  Expected: 30
+
 checkCollision()
 
   // Complete collision

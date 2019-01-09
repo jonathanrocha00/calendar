@@ -31,9 +31,6 @@ events.push(new Event(11, 30, 12, 00));
 events.push(new Event(14, 30, 15, 00));
 events.push(new Event(15, 30, 16, 00));
 
-events.push(new Event(10, 00, 24, 00));
-events.push(new Event(09, 00, 24, 00));
-
 // Accessory functions START ===================================================
 function checkCollision(event1, event2) {
   // Event 1 starts earlier than event 2 starts
@@ -133,44 +130,26 @@ function removeAllChildren(element) {
 
 function setGridColumnEnd(column, element, matrix, event) {
 
-  console.log("Checking event " + matrix[column][element].startHour + ":" + matrix[column][element].startMinute);
-
   let previousColumnEnd = column + 2;
 
   for (let j = column + 1; j < matrix.length; j++) { // Iterates over the columns to the right of current event
-
-    console.log("Checking column " + j + " - previousColumnEnd = " + previousColumnEnd);
 
     let firstCollision = false;
     let newColumnEnd = previousColumnEnd;
 
     for (let k = 0; k < matrix[j].length; k++) { // Iterates over the elements of the columns to the right
-
-      console.log("Is there collision with event " + matrix[j][k].startHour + ":" + matrix[j][k].startMinute + "?");
-
       if(!checkCollision(matrix[column][element], matrix[j][k])) {
         newColumnEnd = j + 2;
-
-        console.log("No =D");
       } else {
-
-        console.log("Yes -.-");
-
         firstCollision = true;
         break;
       }
     }
 
     if(firstCollision) {
-
-      console.log("Collided! Setting gridColumnEnd to " + previousColumnEnd);
-
       event.style.gridColumnEnd = previousColumnEnd;
       break;
     } else {
-
-      console.log("Didnt collide... Setting gridColumnEnd to " + newColumnEnd);
-
       event.style.gridColumnEnd = newColumnEnd;
       previousColumnEnd = newColumnEnd;
     }
@@ -244,15 +223,20 @@ function renderEventList(matrix) {
 
 function addEvent() {
 
-  let startHour = document.getElementById("startHour").value;
-  let startMinute = document.getElementById("startMinute").value;
-  let endHour = document.getElementById("endHour").value;
-  let endMinute = document.getElementById("endMinute").value;
+  let startHour = parseInt(document.getElementById("startHour").value);
+  let startMinute = parseInt(document.getElementById("startMinute").value);
+  let endHour = parseInt(document.getElementById("endHour").value);
+  let endMinute = parseInt(document.getElementById("endMinute").value);
 
-  events.push(new Event(parseInt(startHour),
-                        parseInt(startMinute),
-                        parseInt(endHour),
-                        parseInt(endMinute)));
+  if (!isNaN(startHour) &&
+      !isNaN(startMinute) &&
+      !isNaN(endHour) &&
+      !isNaN(endMinute)) {
+    events.push(new Event(startHour,
+                          startMinute,
+                          endHour,
+                          endMinute));
 
-  renderEvents();
+    renderEvents();
+  }
 }
