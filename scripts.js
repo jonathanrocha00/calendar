@@ -14,6 +14,10 @@ class Event {
     this.endHour = endHour;
     this.endMinute = endMinute;
   }
+
+  get durationInMinutes() {
+    return ((this.endHour - this.startHour) * 60) + this.endMinute - this.startMinute;
+  }
 }
 
 // Stores all events that will be displayed
@@ -26,6 +30,9 @@ events.push(new Event(9, 30, 11, 30));
 events.push(new Event(11, 30, 12, 00));
 events.push(new Event(14, 30, 15, 00));
 events.push(new Event(15, 30, 16, 00));
+
+events.push(new Event(10, 00, 24, 00));
+events.push(new Event(09, 00, 24, 00));
 
 // Accessory functions START ===================================================
 function checkCollision(event1, event2) {
@@ -67,10 +74,16 @@ function checkCollision(event1, event2) {
 function createMatrix(events) {
 
   events.sort(function(a, b) {
-    if (a.startHour != b.startHour) {
-      return a.startHour - b.startHour;
+    if (a.startHour == b.startHour && a.startMinute == b.startMinute) {
+      // Guarantees rule "The longer the duration of the event, the further left the event is positioned"
+      return b.durationInMinutes - a.durationInMinutes;
     } else {
-      return a.startMinute - b.startMinute;
+      // Garantees rule "The “earlier” the start time, the further left the event is positioned"
+      if (a.startHour != b.startHour) {
+        return a.startHour - b.startHour;
+      } else {
+        return a.startMinute - b.startMinute;
+      }
     }
   });
 
@@ -118,6 +131,52 @@ function removeAllChildren(element) {
   }
 }
 
+function setGridColumnEnd(column, element, matrix, event) {
+
+  console.log("Checking event " + matrix[column][element].startHour + ":" + matrix[column][element].startMinute);
+
+  let previousColumnEnd = column + 2;
+
+  for (let j = column + 1; j < matrix.length; j++) { // Iterates over the columns to the right of current event
+
+    console.log("Checking column " + j + " - previousColumnEnd = " + previousColumnEnd);
+
+    let firstCollision = false;
+    let newColumnEnd = previousColumnEnd;
+
+    for (let k = 0; k < matrix[j].length; k++) { // Iterates over the elements of the columns to the right
+
+      console.log("Is there collision with event " + matrix[j][k].startHour + ":" + matrix[j][k].startMinute + "?");
+
+      if(!checkCollision(matrix[column][element], matrix[j][k])) {
+        newColumnEnd = j + 2;
+
+        console.log("No =D");
+      } else {
+
+        console.log("Yes -.-");
+
+        firstCollision = true;
+        break;
+      }
+    }
+
+    if(firstCollision) {
+
+      console.log("Collided! Setting gridColumnEnd to " + previousColumnEnd);
+
+      event.style.gridColumnEnd = previousColumnEnd;
+      break;
+    } else {
+
+      console.log("Didnt collide... Setting gridColumnEnd to " + newColumnEnd);
+
+      event.style.gridColumnEnd = newColumnEnd;
+      previousColumnEnd = newColumnEnd;
+    }
+  }
+}
+
 // Code taken from https://stackoverflow.com/questions/1484506/random-color-generator
 function getRandomColor(brightness){
 
@@ -151,6 +210,8 @@ function renderEvents(){
       event.classList.add("event");
       event.style.backgroundColor = getRandomColor(4);
       event.style.gridColumnStart = column + 1;
+      setGridColumnEnd(column, i, matrix, event);
+
       event.style.gridRowStart = calculatePosition(matrix[column][i].startHour,
                                                    matrix[column][i].startMinute);
       event.style.gridRowEnd = calculatePosition(matrix[column][i].endHour,
