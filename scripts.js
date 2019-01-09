@@ -24,7 +24,7 @@ events.push(new Event(9, 00, 15, 30));
 events.push(new Event(9, 00, 14, 30));
 events.push(new Event(9, 30, 11, 30));
 events.push(new Event(11, 30, 12, 00));
-events.push(new Event(14, 30, 15, 30));
+events.push(new Event(14, 30, 15, 00));
 events.push(new Event(15, 30, 16, 00));
 
 // Accessory functions START ===================================================
