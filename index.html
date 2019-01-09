@@ -1,0 +1,227 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Groupxs Calendar</title>
+
+  <meta name="author" content="Jonathan Rocha">
+
+  <link rel="stylesheet" href="cssreset.css">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body onload="renderEvents()">
+  <script src="scripts.js"></script>
+
+  <div id="eventListContainer" class="container">
+    <p> Events </p>
+    <ul id="eventList">
+    </ul>
+  </div>
+
+  <div id="container">
+
+    <div id="background">
+      <div class="day">
+        <p class="dayNumber"> 16 </p>
+        <p class="dayName"> Thursday </p>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 00h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 01h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 02h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 03h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 04h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 05h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 06h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 07h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 08h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 09h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 10h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 11h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 12h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 13h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 14h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 15h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 16h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 17h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 18h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 19h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 20h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 21h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 22h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+      <div class="hour">
+        <div class="halfTop">
+          <p> 23h </p>
+        </div>
+        <div class="halfBottom">
+        </div>
+      </div>
+    </div>
+
+    <div id="events">
+    </div>
+
+  </div>
+
+  <div id="eventFormContainer" class="container">
+    <p> Create new event </p>
+    <div id="eventForm">
+      <p> Starts at </p> </br>
+      <input type="number" id="startHour" min=0 max=23>
+      <p> : </p>
+      <input type="number" id="startMinute" min=0 max=30> </br>
+
+      <p> Ends at </p> </br>
+      <input type="number" id="endHour" min=0 max=23>
+      <p> : </p>
+      <input type="number" id="endMinute" min=0 max=30> </br>
+
+      <button id="submitButton" onclick="addEvent()">
+        Create
+      </button
+    </div>
+  </div>
+
+</body>
+</html>

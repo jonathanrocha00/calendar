@@ -1,0 +1,65 @@
+
+
+checkCollision()
+
+  // Complete collision
+  event1(00, 00, 24, 00)
+  event2(00, 00, 24, 00)
+  Expected: true
+
+  // Regular colliding events
+  event1(10, 00, 12, 00)
+  event2(11, 00, 13, 00)
+  Expected: true
+
+  // Regular colliding events due to minutes field
+  event1(10, 00, 12, 30)
+  event2(12, 00, 13, 00)
+  Expected: true
+
+  // Regular non colliding events
+  event1(08, 00, 20, 30)
+  event2(21, 00, 23, 00)
+  Expected: false
+
+  // Back-to-back events with earlier event first and minutes field = 00
+  event1(00, 00, 12, 00)
+  event2(12, 00, 24, 00)
+  Expected: false
+
+  // Back-to-back events with later event first and minutes field = 00
+  event1(12, 00, 24, 00)
+  event2(00, 00, 12, 00)
+  Expected: false
+
+  // Back-to-back events with earlier event first and minutes field = 30
+  event1(00, 00, 12, 30)
+  event2(12, 30, 24, 00)
+  Expected: false
+
+  // Back-to-back events with later event first and minutes field = 30
+  event1(12, 30, 24, 00)
+  event2(00, 00, 12, 30)
+  Expected: false
+
+calculatePosition()
+
+  // Random time
+  hour = 13
+  minute = 00
+  Expected: 27
+
+  // First position
+  hour = 00
+  minute = 00
+  Expected: 1
+
+  // Last position
+  hour = 24
+  minute = 00
+  Expected: 49
+
+  // Time with minute = 30
+  hour = 00
+  minute = 30
+  Expected: 2
