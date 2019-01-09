@@ -5,7 +5,8 @@ Implemented by Jonathan Rocha
 Open the file `index.html` in any browser. Preferably, Chrome.
 
 ### How to add new events
-Use the interface to add new events or open the file `scripts.js` and modify the block of code commented as "Standart input".
+1. Use the interface to add new events
+2. Open the file `scripts.js` and modify the block of code commented as "Standart input".
 
 ### About tests
 Some prototype tests were created in the file `tests prototype.txt`.
